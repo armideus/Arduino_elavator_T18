@@ -1,14 +1,20 @@
-# include <Arduino.h>
-# include <Wire.h>
+#define x 1 //
+int Adress = 20 + x;
 
-# define I2C_ADDRESS 21 // define this slave as number 21
-# define LED 13
-# define KNP 7
+#include <Wire.h>
 
 void setup() {
-
+  Wire.begin(Adress);                // join i2c bus with address #8
+  Wire.onRequest(requestEvent); // register event
 }
 
+void loop() {
+  delay(500);
+}
+
+// function that executes whenever data is requested by master
+// this function is registered as an event, see setup()
 void requestEvent() {
-  Wire.write((digitalRead(KNP)));
+  Wire.write(X++); // respond with message of 6 bytes
+  // as expected by master
 }

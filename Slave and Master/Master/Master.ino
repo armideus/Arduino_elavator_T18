@@ -1,20 +1,15 @@
-#include <Arduino.h>
+#define SLAVE1 21
+
 #include <Wire.h>
 
-#define SLAVE_1 21 //slave 21 is de slaves gebruikt in de code
-
-#define KNP 7 // pin  6 is de knop
-
-int knop = 0; //begint uit
 void setup() {
-  // put your setup code here, to run once:
-  Wire.begin();
-  pinMode(KNP, INPUT); //knop is een input
-  Serial.begin(9600);
- 
+  Wire.begin();        // join i2c bus (address optional for master)
+  Serial.begin(9600);  // start serial for output
 }
 
 void loop() {
-Wire.requestFrom(21, 1);
+  Wire.requestFrom(SLAVE1, 1);    // request 6 bytes from peripheral device #8
+Serial.println(Wire.read());
 
-  }
+  delay(500);
+}
