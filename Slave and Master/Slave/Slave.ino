@@ -30,11 +30,19 @@ void loop() {
 IR = digitalRead(IRPIN)
 BTN_low = digitalRead(BTNPIN)
 
-if(IR == 1){digitalWrite(LEDRED, 1);
-if(Chosen_one == true){digitalWrite(LEDRED, 1); }}
+if(IR == 1) {
+digitalWrite(LEDRED, 1);
+if(Chosen_one == true)
+{digitalWrite(LEDGREEN, 1); }
+}
+else {
+  digitalWrite(LEDRED, 0)
+  digitalWrite(LEDGREEN, 0)
+}
 
 
-
+if(BTN_low == 1){digitalWrite(BTNPIN, 1)}
+else {{digitalWrite(BTNPIN, 0)}
 }//end loop
 
 
