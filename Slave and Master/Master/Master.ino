@@ -7,6 +7,7 @@
 #include <Keypad.h>
 
 int Current_floor;
+int live_floor =0; //not sure if this one gets updated by the livefloor function
 char Temp;
 int MagicSequence[2][3];
 
@@ -113,10 +114,18 @@ void loop(){
   }
 
 
-int Live_floor(){}
+int Live_floor(){
+if (MagicSequence[1][0] == 1){Live_floor = 1}
+if (MagicSequence[1][1] == 1){Live_floor = 2}
+if (MagicSequence[1][2] == 1){Live_floor = 3}
+return (Live_floor)
+}
+
+
+
 void 7SEG_write(int Number){}
 
-Go_to_floor(int Floor){
+void Go_to_floor(int Floor){
   if(Floor-- < Live_floor())
   While( MagicSequence[1][Floor] != 1){
   //Stepmoter down on this line
@@ -125,5 +134,7 @@ Go_to_floor(int Floor){
   While( MagicSequence[1][Floor] != 1){
   //Stepmoter up on this line
   }
-  else
+  else{}
+
+Return(void)
 }
