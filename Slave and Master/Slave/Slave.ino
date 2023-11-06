@@ -46,7 +46,7 @@ void requestEvent() {
 
 bool recieveEvent(){
   Chosen_one = Wire.read()
-  Return(Chosen_one)
+  Return(Chosen_one);
 }
 
 void Slave(int x) {

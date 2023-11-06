@@ -35,9 +35,6 @@ MagicSequence[1][1] = Wire.read(); // IR 2
     Wire.requestFrom(SLAVE3, 2);
 MagicSequence[0][2] = 3 ;//Wire.read();
 MagicSequence[1][2] = Wire.read(); // IR 3
-if(Temp == 1){
-
-}
   delay(1);
 
                                 // Print the whole thing for Debug purposes
@@ -139,6 +136,6 @@ void Go_to_floor(int Floor){
     Wire.beginTransmission(floor)
     Wire.write(floor);
     Wire.endTransmission()
-    
+
 Return(void)
 }
