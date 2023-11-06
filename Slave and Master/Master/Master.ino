@@ -8,53 +8,83 @@
 
 int Current_floor;
 char Temp;
+int MagicSequence[2][3];
+
 
 void setup() {
   Wire.begin();        // join i2c bus (address optional for master)
   Serial.begin(9600);  // start serial for output
 }
 
-void loop() {
 
+void loop() {
                               //fill a 2d array with the magic sequence
-  int MagicSequence[2][3];    //don't forget arrays are zerobased
+    //don't forget arrays are zerobased
 
   Wire.requestFrom(SLAVE1, 2);    
 MagicSequence[0][0] = 1 ;//Wire.read();
-MagicSequence[1][0] = Wire.read();
+MagicSequence[1][0] = Wire.read(); // IR 1
   delay(1);
 
     Wire.requestFrom(SLAVE2, 2);    
 MagicSequence[0][1] = 2 ;//Wire.read();
-MagicSequence[1][1] = Wire.read();
+MagicSequence[1][1] = Wire.read(); // IR 2
   delay(1);
 
     Wire.requestFrom(SLAVE3, 2);
-MagicSequence[0][2] = 3 ;//
-Wire.read();
-Temp = Wire.read();
+MagicSequence[0][2] = 3 ;//Wire.read();
+MagicSequence[1][2] = Wire.read(); // IR 3
 if(Temp == 1){
-  
+
 }
   delay(1);
 
+                                // Print the whole thing for Debug purposes
 for(int y = 0, y <= 2, y++){
+  Serial.print(.)
   for(int x = 0, x <= 1, x++){
-Serial.println(MagicSequence[x][y]);
+Serial.print(MagicSequence[x][y]);
+Serial.println()
    }}
 
-if(){
-void Called_to_floor();
+
+
+Temp = Read_keypad();
+
+  switch(Temp){
+    default:
+    Serial.println("Error Called to floor: Invalid input")
+    break;
+
+    
+    case "1":
+    Go_to_floor(1);
+    break;
+      
+  
+    case "2":
+    Go_to_floor(2);
+    break;
+    
+    
+    case "3":
+    Go_to_floor(3);
+    break;
 }
 
 7SEG_write(Live_floor());
 
 
+} // end of loop
 
-}
 
 
-char Keypad(){{                             //code for the keypad, planning to divide the code into functions
+
+
+
+
+
+char Read_eypad(){{                             //code for the keypad, planning to divide the code into functions
 const byte ROWS = 4; 
 const byte COLS = 4; 
 
@@ -86,31 +116,14 @@ void loop(){
 int Live_floor(){}
 void 7SEG_write(int Number){}
 
-void Called_to_floor(int FloorX){
-  switch(FloorX){
-    default:
-    Serial.println("Error Called to floor: Invalid input")
-    break;
-
-    
-    case "1":
-    if(Live_floor() == 1){break;}
-    else{
-
-    }
-    break;
-      
-  
-    case "2":
-    break;
-    
-    
-    case "3":
-    break;
-  }
-}
-
-Down_till(int Floor){
+Go_to_floor(int Floor){
+  if(Floor-- < Live_floor())
+  While( MagicSequence[1][Floor] != 1){
   //Stepmoter down on this line
-  if
+  }
+  else if(Floor-- > Live_floor())
+  While( MagicSequence[1][Floor] != 1){
+  //Stepmoter up on this line
+  }
+  else
 }
