@@ -136,5 +136,9 @@ void Go_to_floor(int Floor){
   }
   else{}
 
+    Wire.beginTransmission(floor)
+    Wire.write(floor);
+    Wire.endTransmission()
+    
 Return(void)
 }
