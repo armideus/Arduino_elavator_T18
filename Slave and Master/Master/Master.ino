@@ -12,10 +12,8 @@ char Temp;
 int MagicSequence[2][3];
 
 
-char Read_eypad(){{                             //code for the keypad, planning to divide the code into functions
 const byte ROWS = 4; 
 const byte COLS = 4; 
-
 
 char hexaKeys[ROWS][COLS] = {
   {'1', '2', '3', 'A'},
@@ -24,10 +22,11 @@ char hexaKeys[ROWS][COLS] = {
   {'*', '0', '#', 'D'}
 };
 
-byte rowPins[ROWS] = {13, 12, 11, 10}; 
-byte colPins[COLS] = {7, 6, 5, 4}; 
+byte rowPins[ROWS] = {22, 24, 26, 28}; 
+byte colPins[COLS] = {30, 32, 34, 38}; 
 
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
+
 
 
 void setup(){
@@ -35,12 +34,7 @@ void setup(){
 }
 
 void loop(){
-  char customKey = customKeypad.getKey();
 
-  if (customKey){
-    Serial.println(customKey);
-    return(customKey)
-  }
 
 
 int Live_floor(){
@@ -48,7 +42,7 @@ if (MagicSequence[1][0] == 1){Live_floor = 1}
 if (MagicSequence[1][1] == 1){Live_floor = 2}
 if (MagicSequence[1][2] == 1){Live_floor = 3}
 return (Live_floor)
-}
+}}
 
 
 
@@ -145,7 +139,7 @@ Serial.println()
 
 
 
-Temp = Read_keypad();
+Temp = customKeypad.getKey();
 
   switch(Temp){
     default:
@@ -170,5 +164,5 @@ Temp = Read_keypad();
 
 7SEG_write(Live_floor());
 
-
-} // end of loop
+ // end of loop
+}

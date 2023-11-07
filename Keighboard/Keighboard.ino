@@ -10,7 +10,7 @@ char hexaKeys[ROWS][COLS] = {
   {'*', '0', '#', 'D'}
 };
 
-byte rowPins[ROWS] = {13, 12, 11, 10}; 
+byte rowPins[ROWS] = {13, 12, 11, 10};  
 byte colPins[COLS] = {7, 6, 5, 4}; 
 
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
