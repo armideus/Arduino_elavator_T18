@@ -7,12 +7,28 @@
 #define LEDGREEN 9
 #define BTNLED 10
 
-bool IR;;
+
+
+int X = 1;
+
+bool IR;
 bool BTN_low;
 bool Chosen_one;
 
+void requestEvent(){
+  Wire.write(BTN_low);
+  Wire.write(IR);    
+  return;        
+}
+
+bool receiveEvent(){
+  Chosen_one = Wire.read();
+  return Chosen_one;
+}
+
 void setup() {
-  Slave(1)
+
+int Adress = 20 + X;
   Wire.begin(Adress);            
   Wire.onRequest(requestEvent);  
   Wire.onReceive(receiveEvent);
@@ -27,36 +43,24 @@ pinMode(BTNLED, OUTPUT);
 
 
 void loop() {
-IR = digitalRead(IRPIN)
-BTN_low = digitalRead(BTNPIN)
+IR = digitalRead(IRPIN);
+BTN_low = digitalRead(BTNPIN);
 
-if(IR == 1) {
+if(IR == 1){
 digitalWrite(LEDRED, 1);
-if(Chosen_one == true)
+if(Chosen_one == true);
 {digitalWrite(LEDGREEN, 1); }
 }
 else {
-  digitalWrite(LEDRED, 0)
-  digitalWrite(LEDGREEN, 0)
+  digitalWrite(LEDRED, 0);
+  digitalWrite(LEDGREEN, 0);
 }
 
 
-if(BTN_low == 1){digitalWrite(BTNPIN, 1)}
-else {{digitalWrite(BTNPIN, 0)}
+if(BTN_low == 1){digitalWrite(BTNPIN, 1);}
+else {{digitalWrite(BTNPIN, 0);}
+}
 }//end loop
 
 
-void requestEvent() {
-  Wire.write(BTN_low);
-  Wire.write(IR);    
-                                    
-}
 
-bool recieveEvent(){
-  Chosen_one = Wire.read()
-  Return(Chosen_one);
-}
-
-void Slave(int x) {
-int Adress = 20 + X;
-}

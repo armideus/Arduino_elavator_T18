@@ -12,6 +12,104 @@ char Temp;
 int MagicSequence[2][3];
 
 
+char Read_eypad(){{                             //code for the keypad, planning to divide the code into functions
+const byte ROWS = 4; 
+const byte COLS = 4; 
+
+
+char hexaKeys[ROWS][COLS] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
+};
+
+byte rowPins[ROWS] = {13, 12, 11, 10}; 
+byte colPins[COLS] = {7, 6, 5, 4}; 
+
+Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
+
+
+void setup(){
+  Serial.begin(9600);
+}
+
+void loop(){
+  char customKey = customKeypad.getKey();
+
+  if (customKey){
+    Serial.println(customKey);
+    return(customKey)
+  }
+
+
+int Live_floor(){
+if (MagicSequence[1][0] == 1){Live_floor = 1}
+if (MagicSequence[1][1] == 1){Live_floor = 2}
+if (MagicSequence[1][2] == 1){Live_floor = 3}
+return (Live_floor)
+}
+
+
+
+void 7SEG_write(int Number){}
+
+void Go_to_floor(int Floor){
+Floor;
+  switch(Floor){
+case 1:
+      Wire.beginTransmission(21);
+      Wire.write(1);
+      Wire.end();
+
+      Wire.beginTransmission(22);
+      Wire.write(0);
+      Wire.end();
+
+      Wire.beginTransmission(23);
+      Wire.write(0);
+      Wire.end();
+case 2:
+      Wire.beginTransmission(21);
+      Wire.write(0);
+      Wire.end();
+
+      Wire.beginTransmission(22);
+      Wire.write(1);
+      Wire.end();
+
+      Wire.beginTransmission(23);
+      Wire.write(0);
+      Wire.end();
+case 3:
+      Wire.beginTransmission(21);
+      Wire.write(0);
+      Wire.end();
+
+      Wire.beginTransmission(22);
+      Wire.write(0);
+      Wire.end();
+
+      Wire.beginTransmission(23);
+      Wire.write(1);
+      Wire.end();
+default:
+  }
+  if(Floor < Live_floor())
+  While( MagicSequence[1][Floor] != 1){
+  //Stepmoter down on this line
+  }
+  else if(Floor > Live_floor())
+  While( MagicSequence[1][Floor] != 1){
+  //Stepmoter up on this line
+  }
+  else{}
+
+
+
+Return(void)
+}
+
 void setup() {
   Wire.begin();        // join i2c bus (address optional for master)
   Serial.begin(9600);  // start serial for output
@@ -74,68 +172,3 @@ Temp = Read_keypad();
 
 
 } // end of loop
-
-
-
-
-
-
-
-
-char Read_eypad(){{                             //code for the keypad, planning to divide the code into functions
-const byte ROWS = 4; 
-const byte COLS = 4; 
-
-char hexaKeys[ROWS][COLS] = {
-  {'1', '2', '3', 'A'},
-  {'4', '5', '6', 'B'},
-  {'7', '8', '9', 'C'},
-  {'*', '0', '#', 'D'}
-};
-
-byte rowPins[ROWS] = {13, 12, 11, 10}; 
-byte colPins[COLS] = {7, 6, 5, 4}; 
-
-Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
-
-void setup(){
-  Serial.begin(9600);
-}
-
-void loop(){
-  char customKey = customKeypad.getKey();
-
-  if (customKey){
-    Serial.println(customKey);
-    return(customKey)
-  }
-
-
-int Live_floor(){
-if (MagicSequence[1][0] == 1){Live_floor = 1}
-if (MagicSequence[1][1] == 1){Live_floor = 2}
-if (MagicSequence[1][2] == 1){Live_floor = 3}
-return (Live_floor)
-}
-
-
-
-void 7SEG_write(int Number){}
-
-void Go_to_floor(int Floor){
-  if(Floor-- < Live_floor())
-  While( MagicSequence[1][Floor] != 1){
-  //Stepmoter down on this line
-  }
-  else if(Floor-- > Live_floor())
-  While( MagicSequence[1][Floor] != 1){
-  //Stepmoter up on this line
-  }
-  else{}
-
-    Wire.beginTransmission(floor)
-    Wire.write(floor);
-    Wire.endTransmission()
-
-Return(void)
-}
