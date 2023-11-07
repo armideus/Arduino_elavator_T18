@@ -5,12 +5,14 @@
 
 #include <Wire.h>
 #include <Keypad.h>
-
+  
 int Current_floor;
-int live_floor =0; //not sure if this one gets updated by the livefloor function
+int Lfloor = 0; //not sure if this one gets updated by the livefloor function
 char Temp;
 int MagicSequence[2][3];
 
+int x = 0 ;
+int y = 0 ;
 
 const byte ROWS = 4; 
 const byte COLS = 4; 
@@ -22,31 +24,23 @@ char hexaKeys[ROWS][COLS] = {
   {'*', '0', '#', 'D'}
 };
 
-byte rowPins[ROWS] = {22, 24, 26, 28}; 
-byte colPins[COLS] = {30, 32, 34, 38}; 
+byte rowPins[ROWS] = {20, 22, 24, 26};   
+byte colPins[COLS] = {28, 30, 32, 34};
 
 Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS); 
 
 
 
-void setup(){
-  Serial.begin(9600);
+int Live_floor(){
+if (MagicSequence[1][0] == 1){Lfloor = 1;}
+if (MagicSequence[1][1] == 1){Lfloor = 2;}
+if (MagicSequence[1][2] == 1){Lfloor = 3;}
+return (Lfloor);
 }
 
-void loop(){
 
 
-
-int Live_floor(){
-if (MagicSequence[1][0] == 1){Live_floor = 1}
-if (MagicSequence[1][1] == 1){Live_floor = 2}
-if (MagicSequence[1][2] == 1){Live_floor = 3}
-return (Live_floor)
-}}
-
-
-
-void 7SEG_write(int Number){}
+void SEG_write(int Number){}
 
 void Go_to_floor(int Floor){
 Floor;
@@ -63,6 +57,7 @@ case 1:
       Wire.beginTransmission(23);
       Wire.write(0);
       Wire.end();
+break;
 case 2:
       Wire.beginTransmission(21);
       Wire.write(0);
@@ -75,6 +70,7 @@ case 2:
       Wire.beginTransmission(23);
       Wire.write(0);
       Wire.end();
+break;
 case 3:
       Wire.beginTransmission(21);
       Wire.write(0);
@@ -87,21 +83,23 @@ case 3:
       Wire.beginTransmission(23);
       Wire.write(1);
       Wire.end();
+break;
 default:
+break;
   }
   if(Floor < Live_floor())
-  While( MagicSequence[1][Floor] != 1){
+  while( MagicSequence[1][Floor] != 1){
   //Stepmoter down on this line
   }
   else if(Floor > Live_floor())
-  While( MagicSequence[1][Floor] != 1){
+  while( MagicSequence[1][Floor] != 1){
   //Stepmoter up on this line
   }
   else{}
 
 
 
-Return(void)
+return;
 }
 
 void setup() {
@@ -130,12 +128,13 @@ MagicSequence[1][2] = Wire.read(); // IR 3
   delay(1);
 
                                 // Print the whole thing for Debug purposes
-for(int y = 0, y <= 2, y++){
-  Serial.print(.)
-  for(int x = 0, x <= 1, x++){
+for(int y = 0; y <= 2; y++);{
+  Serial.print(".");
+  for(int x = 0; x <= 1; x++);{
 Serial.print(MagicSequence[x][y]);
-Serial.println()
-   }}
+   }
+   //Serial.println();
+   }
 
 
 
@@ -143,26 +142,28 @@ Temp = customKeypad.getKey();
 
   switch(Temp){
     default:
-    Serial.println("Error Called to floor: Invalid input")
+   // Serial.println("Error Called to floor: Invalid input");
     break;
 
     
-    case "1":
+    case 1:
     Go_to_floor(1);
     break;
       
   
-    case "2":
+    case 2:
     Go_to_floor(2);
     break;
     
     
-    case "3":
+    case 3:
     Go_to_floor(3);
     break;
 }
 
-7SEG_write(Live_floor());
+SEG_write(Live_floor());
 
+  if (Temp){
+  Serial.println(Temp);}
  // end of loop
 }
