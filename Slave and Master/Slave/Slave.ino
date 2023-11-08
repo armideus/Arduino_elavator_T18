@@ -48,7 +48,7 @@ BTN_low = digitalRead(BTNPIN);
 
 if(IR == 1){
 digitalWrite(LEDRED, 1);
-if(Chosen_one == true);
+if(Chosen_one == true)
 {digitalWrite(LEDGREEN, 1); }
 }
 else {
@@ -60,6 +60,11 @@ else {
 if(BTN_low == 1){digitalWrite(BTNPIN, 1);}
 else {{digitalWrite(BTNPIN, 0);}
 }
+
+if(Chosen_one == true){
+  digitalWrite(BTNLED, 1)
+}
+
 }//end loop
 
 
